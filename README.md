@@ -62,7 +62,7 @@ The goal was to benchmark different architectures for accuracy–latency trade-o
 
 ### 🚀 Post-Training Quantization on MobileNetV2
 - **Latency Reduction**: 48.4% faster inference.  
-- **Accuracy Drop**: ~1.2% (91.1% → 89.9%).  
+- **Accuracy Drop**: ~1.2% (91.1% → 90.9%).  
 - **Final Latency**: ~28 ms/image on CPU.  
 
 ---
