@@ -21,12 +21,13 @@ The goal was to benchmark different architectures for accuracy–latency trade-o
 ## 🧠 Methodology
 
 1. **Data Preprocessing**
-   - Resized images to `224×224` to match ImageNet pre-trained weights.
-   - Applied standard augmentations: random horizontal flips, random rotations, normalization.
-   - Split data into:
-     - **80% Training**
-     - **10% Validation**
-     - **10% Testing**
+  - Images resized to 224×224 (ImageNet input size).
+  - Normalized with ImageNet statistics:
+      - Mean = [0.485, 0.456, 0.406]
+      - Std = [0.229, 0.224, 0.225]
+  - Train/Test Split: 70% / 30%
+
+---
 
 2. **Model Selection**
    - **ResNet-50** – Deep residual connections for robust feature learning.
@@ -54,16 +55,22 @@ The goal was to benchmark different architectures for accuracy–latency trade-o
 
 ## 📊 Results
 
-| Model         | Accuracy (%) | Latency (ms) | Params (M) |
-|---------------|-------------|--------------|------------|
-| ResNet-50     | 93.2        | 152.6        | 25.6       |
-| DenseNet-121  | 92.5        | 184.7        | 7.98       |
-| **MobileNetV2** | **91.1**    | **54.2**     | **2.25**   |
+| Model        | Accuracy (%) | Latency (ms/sample) | Parameters | FLOPs         |
+|--------------|--------------|--------------------|------------|---------------|
+| resnet50     | 92.06        | 133.02              | 23.60 M    | 4.13 GMac     |
+| densenet121  | 88.73        | 193.55              | 7.06 M     | 2.90 GMac     |
+| mobilenet_v2 | 90.32        | 42.64               | 2.28 M     | 325.37 MMac   |
+
 
 ### 🚀 Post-Training Quantization on MobileNetV2
-- **Latency Reduction**: 48.4% faster inference.  
-- **Accuracy Drop**: ~1.2% (91.1% → 90.9%).  
-- **Final Latency**: ~28 ms/image on CPU.  
+| Model                    | Accuracy (%) | Latency (ms/sample) | Parameters | FLOPs       |
+|--------------------------|--------------|---------------------|------------|-------------|
+| mobilenet_v2              | 90.32        | 50.39               | 2.28 M     | 325.37 MMac |
+| mobilenet_v2_quantized    | 89.12        | 24.47               | 2.21 M     | 62.72 KMac  |
+
+- **Latency Reduction**: 51.44% faster inference.  
+- **Accuracy Drop**: ~1.2% (90.32% → 89.12%).  
+- **Final Latency**: ~24.47 ms/image on CPU.  
 
 ---
 
