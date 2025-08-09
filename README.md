@@ -76,6 +76,7 @@ The goal was to benchmark different architectures for accuracy–latency trade-o
 ---
 
 ## 📈 Visualization
+- Loss vs Epoch plot visualization.
 - Accuracy, precision, recall, F1 score - classification prediction performance.
 - Confusion Matrix – Class-wise prediction performance.
 - Latency Plots – Pre- and post-quantization inference speeds.
